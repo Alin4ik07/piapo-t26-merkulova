@@ -1,0 +1,6 @@
+target/
+*.enc
+secret.txt
+restored.txt
+.vscode/
+*.log
