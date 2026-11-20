@@ -1,9 +1,15 @@
-package ru.mirea.filecryptor;
+package ru.mirea.filecryptor.facade;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ru.mirea.filecryptor.crypto.EncryptionStrategy;
+import ru.mirea.filecryptor.model.CryptoTask;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class FileCryptorFacade {
+    private static final Logger log = LoggerFactory.getLogger(FileCryptorFacade.class);
     private EncryptionStrategy strategy;
 
     public FileCryptorFacade(EncryptionStrategy strategy) {
@@ -14,7 +20,6 @@ public class FileCryptorFacade {
         this.strategy = strategy;
     }
 
-    // Р В Р РѓР В РЎвЂР РЋРІР‚С›Р РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂР В Р’Вµ Р РЋРІР‚С›Р В Р’В°Р В РІвЂћвЂ“Р В Р’В»Р В Р’В°
     public void processEncryption(CryptoTask task) throws Exception {
         Path source = Path.of(task.getInputPath());
         Path target = Path.of(task.getOutputPath());
@@ -22,13 +27,14 @@ public class FileCryptorFacade {
         byte[] fileBytes = Files.readAllBytes(source);
         byte[] encryptedBytes = strategy.encrypt(fileBytes, task.getPassword());
         Files.write(target, encryptedBytes);
+        log.info("Файл успешно зашифрован: {} -> {}", source, target);
 
         if (task.isDeleteOriginal()) {
             Files.deleteIfExists(source);
+            log.info("Исходный файл удален: {}", source);
         }
     }
 
-    // Р В РІР‚СњР В Р’ВµР РЋРІвЂљВ¬Р В РЎвЂР РЋРІР‚С›Р РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂР В Р’Вµ Р РЋРІР‚С›Р В Р’В°Р В РІвЂћвЂ“Р В Р’В»Р В Р’В°
     public void processDecryption(CryptoTask task) throws Exception {
         Path source = Path.of(task.getInputPath());
         Path target = Path.of(task.getOutputPath());
@@ -36,10 +42,10 @@ public class FileCryptorFacade {
         byte[] encryptedBytes = Files.readAllBytes(source);
         byte[] decryptedBytes = strategy.decrypt(encryptedBytes, task.getPassword());
         Files.write(target, decryptedBytes);
+        log.info("Файл успешно расшифрован: {} -> {}", source, target);
 
         if (task.isDeleteOriginal()) {
             Files.deleteIfExists(source);
         }
     }
 }
-

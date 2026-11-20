@@ -1,5 +1,9 @@
 package ru.mirea.filecryptor;
 
+import ru.mirea.filecryptor.crypto.AesStrategy;
+import ru.mirea.filecryptor.facade.FileCryptorFacade;
+import ru.mirea.filecryptor.model.CryptoTask;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -11,7 +15,7 @@ public class Main {
             String restoredFile = "restored.txt";
             String password = "MySuperSecretPassword123";
 
-            Files.writeString(Path.of(originalFile), "Секретные данные для лабораторной работы по РТУ МИРЭА!");
+            Files.writeString(Path.of(originalFile), "Секретные данные");
             System.out.println("1. Исходный файл создан: " + originalFile);
 
             FileCryptorFacade cryptor = new FileCryptorFacade(new AesStrategy());

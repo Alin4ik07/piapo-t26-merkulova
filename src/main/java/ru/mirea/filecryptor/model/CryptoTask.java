@@ -1,4 +1,4 @@
-package ru.mirea.filecryptor;
+package ru.mirea.filecryptor.model;
 
 public class CryptoTask {
     private final String inputPath;
@@ -49,4 +49,3 @@ public class CryptoTask {
         }
     }
 }
-

@@ -2,6 +2,10 @@ package ru.mirea.filecryptor;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import ru.mirea.filecryptor.crypto.AesStrategy;
+import ru.mirea.filecryptor.facade.FileCryptorFacade;
+import ru.mirea.filecryptor.model.CryptoTask;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +21,7 @@ class FileCryptorTest {
         Path encrypted = tempDir.resolve("test.txt.enc");
         Path decrypted = tempDir.resolve("restored.txt");
 
-        String text = "Р В РЎСџР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’ВµР РЋР вЂљР В РЎвЂќР В Р’В° Р РЋРІвЂљВ¬Р В РЎвЂР РЋРІР‚С›Р РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋР РЏ Р В РўвЂР В Р’В»Р РЋР РЏ Р В Р’В Р В РЎС›Р В Р в‚¬ Р В РЎС™Р В Р’ВР В Р’В Р В Р’В­Р В РЎвЂ™";
+        String text = "Проверка шифрования для РТУ МИРЭА";
         Files.writeString(original, text);
 
         FileCryptorFacade cryptor = new FileCryptorFacade(new AesStrategy());

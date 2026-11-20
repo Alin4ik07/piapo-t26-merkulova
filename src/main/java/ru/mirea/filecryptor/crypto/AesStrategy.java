@@ -1,4 +1,4 @@
-package ru.mirea.filecryptor;
+package ru.mirea.filecryptor.crypto;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -27,4 +27,3 @@ public class AesStrategy implements EncryptionStrategy {
         return cipher.doFinal(encryptedData);
     }
 }
-

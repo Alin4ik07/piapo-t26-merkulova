@@ -6,10 +6,11 @@
 
 ## Структура проекта
 * `src/main/java/ru/mirea/filecryptor/` — исходный код приложения:
-  * `EncryptionStrategy.java` и `AesStrategy.java` — поведенческий паттерн **Стратегия (Strategy)**;
-  * `CryptoTask.java` — порождающий паттерн **Строитель (Builder)**;
-  * `FileCryptorFacade.java` — структурный паттерн **Фасад (Facade)**;
+  * `crypto/EncryptionStrategy.java` и `crypto/AesStrategy.java` — поведенческий паттерн **Стратегия (Strategy)**;
+  * `model/CryptoTask.java` — порождающий паттерн **Строитель (Builder)**;
+  * `facade/FileCryptorFacade.java` — структурный паттерн **Фасад (Facade)**;
   * `Main.java` — точка входа в приложение.
+* `src/main/resources/logback.xml` — конфигурация системы логирования **Logback**.
 * `src/test/java/ru/mirea/filecryptor/FileCryptorTest.java` — модульные тесты JUnit 5.
 * `pom.xml` — конфигурация системы сборки **Apache Maven**.
 
@@ -27,10 +28,11 @@
 
 2. **Запуск скомпилированного приложения:**
    ```bash
-   java -jar target/filecryptor-1.0.0.jar
+   java -Dfile.encoding=UTF-8 -jar target/filecryptor-1.0.0.jar
    ```
 
 ## Использованные зависимости и плагины
-1. **JUnit Jupiter (`org.junit.jupiter:junit-jupiter:5.10.2`)** — фреймворк модульного тестирования для автоматической проверки цикла шифрования и дешифрования при сборке.
-2. **Maven Surefire Plugin (`3.2.5`)** — плагин автоматического запуска тестов на фазе `test`.
-3. **Maven JAR Plugin (`3.3.0`)** — плагин упаковки проекта в исполняемый JAR-архив с указанием точки входа `Main-Class`.
+1. **SLF4J / Logback (`ch.qos.logback:logback-classic`)** — библиотека логирования хода выполнения операций шифрования и дешифрования.
+2. **JUnit Jupiter (`org.junit.jupiter:junit-jupiter:5.10.2`)** — фреймворк модульного тестирования для автоматической проверки цикла шифрования и дешифрования при сборке.
+3. **Maven Surefire Plugin (`3.2.5`)** — плагин автоматического запуска тестов на фазе `test`.
+4. **Maven JAR Plugin (`3.3.0`)** — плагин упаковки проекта в исполняемый JAR-архив с указанием точки входа `Main-Class`.
