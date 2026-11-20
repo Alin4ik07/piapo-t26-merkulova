@@ -28,7 +28,7 @@
 
 2. **Запуск скомпилированного приложения:**
    ```bash
-   java -Dfile.encoding=UTF-8 -jar target/filecryptor-1.0.0.jar
+   chcp 65001; java "-Dstdout.encoding=UTF-8" "-Dfile.encoding=UTF-8" -jar target\filecryptor-1.0.0.jar
    ```
 
 ## Использованные зависимости и плагины
